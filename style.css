@@ -1,0 +1,518 @@
+/* =========================================
+   1. นำเข้าฟอนต์ DB Ozone X จากโฟลเดอร์ local
+   ========================================= */
+@font-face {
+    font-family: 'DBOzoneX';
+    src: url('fonts/DB\ Ozone\ X.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'DBOzoneX';
+    src: url('fonts/DB\ Ozone\ X\ Bd.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+}
+
+:root {
+    --primary-green: #94c13a; 
+    --dark-green: #3D8C40; 
+    --cta-orange: #E67E22; 
+    --light-gray: #F8F9FA;
+    --text-dark: #333333;
+    --white: #FFFFFF;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'DBOzoneX', Tahoma, sans-serif; /* เปลี่ยนกลับมาใช้ DB Ozone X */
+}
+/* กล่องคุมเนื้อหาหลัก จัดกึ่งกลางหน้าจอ และเว้นระยะไม่ให้ชิดขอบ */
+.container {
+    max-width: 1200px; /* บังคับความกว้างสูงสุดของเนื้อหาไม่ให้บานออกตามจอ */
+    width: 90%;        /* ให้มีความกว้าง 90% ของจอภาพเมื่อเปิดในจอที่เล็กกว่า 1200px */
+    margin: 0 auto;    /* เทคนิคบังคับให้กล่องนี้อยู่กึ่งกลางหน้าจอเสมอ */
+    padding: 0 20px;   /* เว้นระยะห่างด้านข้างเผื่อไว้สำหรับหน้าจอมือถือ */
+    box-sizing: border-box;
+}
+body {
+    background-color: var(--white);
+    color: var(--text-dark);
+    line-height: 1.6;
+    font-weight: normal;
+    font-size: 110%; /* ขยายขนาดเริ่มต้นของทั้งหน้าเว็บขึ้น 10% */
+}
+
+/* Typography เพิ่มเติมเพื่อให้หัวข้อดูหนักแน่นขึ้น */
+h1, h2, h3 {
+    color: var(--dark-green);
+    margin-bottom: 15px;
+    font-weight: 600; /* ให้หัวข้อหนาขึ้น */
+}
+
+/* โค้ดส่วนอื่นๆ คงเดิม */
+
+h2 {
+    font-size: 3rem;
+}
+
+p {
+    font-size: 1.4rem; /* ขยาย Paragraph ให้ใหญ่สะใจ อ่านง่ายแน่นอน */
+    color: #555;
+    margin-bottom: 15px;
+}
+/* Navigation */
+/* Navigation */
+header {
+    /* ไล่ระดับสี (Gradient) จากเขียวเข้ม ไป เขียวอ่อน (#94c13a) */
+    background: linear-gradient(135deg, var(--dark-green) 0%, var(--primary-green) 100%);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.nav-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 0; /* ลดขนาดลงเล็กน้อยให้ดูโมเดิร์น */
+    width: 100%;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 15px; /* ระยะห่างระหว่างรูปโลโก้กับตัวอักษร */
+}
+
+/* ตั้งค่าขนาดรูปโลโก้บางจาก */
+#bcp-logo {
+    height: 45px;
+    width: auto;
+    object-fit: contain;
+}
+
+/* เปลี่ยนสีตัวอักษรโลโก้ให้สว่างขึ้นบนพื้นเขียว */
+.logo h2 {
+    margin: 0;
+    color: var(--white); 
+    font-size: 1.6rem; /* ลดขนาดลงนิดนึงให้มีพื้นที่สำหรับเมนู */
+    white-space: nowrap; /* <--- บรรทัดนี้คือตัวบังคับห้ามตัดคำ */
+}
+
+.logo span {
+    color: #e0f2cb; /* สีเขียวอ่อนมากๆ เพื่อให้ดูมีมิติ */
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
+/* เปลี่ยนสีลิงก์เมนูให้เป็นสีขาว */
+nav a {
+    text-decoration: none;
+    color: var(--white);
+    font-weight: 500;
+    font-size: 1.4rem; /* ขยายเมนูให้ใหญ่ขึ้น */
+    transition: all 0.3s ease;
+    white-space: nowrap; 
+}
+
+.btn-cta, .btn-primary, .btn-header-cta {
+    font-size: 1.4rem; /* ขยายตัวอักษรในปุ่มต่างๆ ให้ใหญ่ขึ้น */
+    padding: 15px 35px; /* เพิ่มพื้นที่รอบๆ ตัวอักษรให้ปุ่มดูใหญ่ตาม */
+}
+
+/* เอฟเฟกต์เวลาชี้เมาส์ที่เมนู */
+nav a:hover {
+    color: #f1f1f1;
+    text-shadow: 0 0 8px rgba(255,255,255,0.5);
+}
+
+/* ปุ่ม Contact ในแถบเมนู (ต้องสลับสีให้เด่นบนพื้นเขียว) */
+/* ปุ่ม Contact ในแถบเมนู */
+.btn-header-cta {
+    display: inline-block; /* บังคับให้เป็นกล่องปุ่มที่สมบูรณ์ */
+    white-space: nowrap; /* บังคับไม่ให้ข้อความตกบรรทัด */
+    background-color: var(--white);
+    color: var(--dark-green) !important; /* ใช้ !important ป้องกันสีขาวจาก nav a มาตีกัน */
+    padding: 10px 24px;
+    border-radius: 50px; /* ปรับให้ขอบมนขึ้นอีกนิดจะดูทันสมัยเข้ากับโลโก้ครับ (ถ้าชอบแบบเหลี่ยมเปลี่ยนเป็น 5px ได้) */
+    text-decoration: none;
+    font-weight: 600;
+    transition: 0.3s;
+    border: 2px solid var(--white);
+    line-height: 1.5;
+}
+
+.btn-header-cta:hover {
+    background-color: transparent;
+    color: var(--white) !important;
+}
+
+/* Buttons */
+.btn-primary {
+    background-color: var(--primary-green);
+    color: var(--white);
+    padding: 10px 24px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.btn-primary:hover {
+    background-color: var(--dark-green);
+    color: var(--white);
+}
+
+.btn-cta {
+    background-color: var(--cta-orange);
+    color: var(--white);
+    padding: 15px 30px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 1.2rem;
+    font-weight: bold;
+    display: inline-block;
+    border: none;
+    cursor: pointer;
+    transition: 0.3s;
+    box-shadow: 0 4px 6px rgba(230, 126, 34, 0.3);
+}
+
+.btn-cta:hover {
+    background-color: #D35400;
+    transform: translateY(-2px);
+}
+
+.btn-block {
+    width: 100%;
+    margin-top: 10px;
+}
+
+/* Hero Section */
+#hero {
+    background: linear-gradient(rgba(255,255,255,0.9), rgba(255,255,255,0.9)), url('images/refinery.jpg') center/cover;
+    padding: 100px 0;
+    text-align: center;
+    border-bottom: 5px solid var(--primary-green);
+}
+
+.hero-content h1 {
+    font-size: 3.5rem;
+}
+
+.hero-content p {
+    font-size: 1.5rem;
+    max-width: 800px;
+    margin: 0 auto 30px;
+}
+
+/* Sections */
+section {
+    padding: 80px 0;
+}
+
+.section-title {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto 50px;
+}
+
+/* Products Grid */
+.grid-products {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+}
+
+.card {
+    background: var(--white);
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    border-top: 4px solid var(--primary-green);
+    transition: transform 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+.card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-bottom: 1px solid #eee;
+}
+
+.card-content {
+    padding: 20px;
+}
+
+.card-content ul {
+    list-style: none;
+    margin-top: 10px;
+}
+
+.card-content li {
+    margin-bottom: 12px;
+    font-size: 1.3rem; /* ขยายขนาดตรงนี้ครับ */
+    color: #555;
+    line-height: 1.5;
+}
+
+/* เพิ่มส่วนนี้เข้าไปต่อท้ายด้วย เพื่อขยายชื่อสินค้า (80/100, Hexane) ให้ใหญ่ตาม */
+.card-content h3 {
+    font-size: 1.8rem;
+    margin-bottom: 15px;
+}
+
+/* Suitability Box */
+.suitability-box {
+    background: var(--light-gray);
+    padding: 40px;
+    text-align: center;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+}
+/* ขยายข้อความคำบรรยายใต้หัวข้อ */
+#suitability p {
+    font-size: 1.5rem; 
+    margin-bottom: 30px;
+}
+
+/* ขยายข้อความ "กรุณาเลือกประเภทอุตสาหกรรมของคุณ:" */
+.suitability-box p, 
+.suitability-box label {
+    font-size: 1.4rem;
+    font-weight: bold;
+    margin-bottom: 15px;
+    display: block;
+}
+
+/* ขยายช่อง Dropdown ให้ใหญ่ พิมพ์ง่าย กดง่าย */
+.suitability-box select {
+    font-size: 1.4rem;
+    padding: 16px 20px;
+    font-family: 'DBOzoneX', Tahoma, sans-serif; /* บังคับใช้ฟอนต์ DB Ozone X */
+    border: 2px solid var(--primary-green);
+    border-radius: 8px;
+    width: 100%;
+    max-width: 600px; /* จำกัดความกว้างไม่ให้ยืดยาวเกินไป */
+    cursor: pointer;
+    margin: 0 auto;
+}
+/* Contact / Lead Form */
+.contact-wrapper {
+    display: flex;
+    gap: 50px;
+    align-items: center;
+    width: 100%; /* ให้ขยายเต็มพื้นที่ของ .container */
+}
+
+.contact-info, .contact-form {
+    flex: 1;
+}
+
+.contact-form form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    background: var(--white);
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+}
+
+.contact-form input, .contact-form select {
+    padding: 16px 20px; /* เพิ่มพื้นที่คลิกด้านในให้กว้างและกดง่ายขึ้น */
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1.3rem; /* ขยายขนาดตัวอักษรให้ใหญ่ขึ้นตรงนี้ครับ */
+    font-family: 'DBOzoneX', Tahoma, sans-serif; /* บังคับใช้ฟอนต์ DB Ozone X ในช่องฟอร์ม */
+    width: 100%;
+}
+
+.contact-form input:focus, .contact-form select:focus {
+    outline: none;
+    border-color: var(--primary-green);
+    box-shadow: 0 0 0 2px rgba(148, 193, 58, 0.2);
+}
+
+/* Footer */
+footer {
+    background-color: var(--dark-green);
+    color: var(--white);
+    padding: 20px 0;
+}
+
+footer p {
+    color: var(--white);
+    margin: 0;
+}
+/* --- Interactive Finder Style --- */
+.interactive-finder {
+    max-width: 750px;
+    margin: 0 auto;
+    background: #ffffff;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    border: 1px solid #eef2f5;
+}
+
+.finder-label {
+    display: block;
+    font-size: 1.15rem;
+    font-weight: 500;
+    margin-bottom: 12px;
+    color: #444;
+    text-align: left;
+}
+
+.form-control-large {
+    width: 100%;
+    padding: 16px;
+    font-size: 1.15rem;
+    border: 2px solid var(--primary-green);
+    border-radius: 8px;
+    outline: none;
+    cursor: pointer;
+    background-color: #fff;
+    transition: all 0.3s;
+}
+
+.form-control-large:focus {
+    box-shadow: 0 0 0 4px rgba(148, 193, 58, 0.2);
+}
+
+.finder-result {
+    margin-top: 30px;
+    padding: 25px;
+    background-color: var(--light-gray);
+    border-left: 6px solid var(--primary-green);
+    border-radius: 4px 8px 8px 4px;
+    text-align: left;
+    animation: fadeInUp 0.4s ease-in-out forwards;
+}
+
+.finder-result h3 {
+    font-size: 1.4rem;
+    color: var(--dark-green);
+    margin-bottom: 15px;
+}
+
+.finder-result span {
+    color: #2c3e50;
+    background: rgba(148, 193, 58, 0.15);
+    padding: 2px 10px;
+    border-radius: 4px;
+}
+
+.result-detail p {
+    font-size: 1.1rem;
+    color: #555;
+    margin-bottom: 20px;
+}
+
+#ctaFinderBtn {
+    margin-top: 5px;
+    font-size: 1.1rem;
+}
+
+/* เอฟเฟกต์เฟดตอนแสดงผล */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(15px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+/* =========================================
+   Responsive Design (ปรับหน้าเว็บให้พอดีทุกหน้าจอ)
+   ========================================= */
+
+/* สำหรับหน้าจอแล็ปท็อปขนาดเล็ก หรือแท็บเล็ตแนวนอน (ไม่เกิน 1024px) */
+@media (max-width: 1024px) {
+    .hero-content h1 {
+        font-size: 2.8rem; /* ลดขนาดหัวข้อหลักลง */
+    }
+    h2 {
+        font-size: 2.2rem;
+    }
+}
+
+/* สำหรับแท็บเล็ตแนวตั้ง หรือมือถือ (ไม่เกิน 768px) */
+@media (max-width: 768px) {
+    .nav-bar {
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    nav ul {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 15px;
+    }
+
+    .hero-content h1 {
+        font-size: 2.2rem;
+    }
+    
+    .hero-content p {
+        font-size: 1.1rem;
+    }
+
+    /* ปรับให้ฟอร์มติดต่อตกลงมาอยู่ด้านล่างข้อความแทนการอยู่ข้างกัน */
+    .contact-wrapper {
+        flex-direction: column;
+        gap: 30px;
+        text-align: center;
+    }
+
+    .contact-info, .contact-form {
+        width: 100%;
+    }
+    
+    /* ปรับช่องว่างของแต่ละ Section ให้กระชับขึ้น */
+    section {
+        padding: 50px 0;
+    }
+}
+
+/* สำหรับมือถือขนาดเล็ก (ไม่เกิน 480px) */
+@media (max-width: 480px) {
+    .hero-content h1 {
+        font-size: 1.8rem;
+    }
+    
+    .grid-products {
+        grid-template-columns: 1fr; /* ให้การ์ดสินค้าเรียง 1 แถว */
+    }
+    
+    .form-control-large {
+        font-size: 1rem;
+        padding: 12px;
+    }
+}
+/* ปรับระยะห่างบน-ล่างของส่วน What is Solvent ให้กระชับและสมดุล */
+#about {
+    padding-top: 60px; /* ระยะห่างด้านบน */
+    padding-bottom: 10px; /* ลดระยะห่างด้านล่างลง เพื่อไม่ให้ไปดันกับ Section ถัดไป */
+}
+
+#about .section-title {
+    margin-bottom: 0; 
+}
