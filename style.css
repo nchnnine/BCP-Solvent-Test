@@ -516,3 +516,36 @@ footer p {
 #about .section-title {
     margin-bottom: 0; 
 }
+/* =========================================
+   ปุ่มติดต่อด่วน (Quick Contact Buttons)
+   ========================================= */
+.quick-contact-buttons {
+    display: flex;
+    flex-wrap: wrap; /* ถ้าจอเล็กปุ่มจะปัดลงบรรทัดใหม่ให้อัตโนมัติ */
+    gap: 12px; /* ระยะห่างระหว่างปุ่ม */
+}
+
+.btn-quick {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem; /* ขนาดฟอนต์ในปุ่ม */
+    font-family: 'DBOzoneX', Tahoma, sans-serif;
+    font-weight: bold;
+    text-decoration: none;
+    padding: 10px 20px;
+    border-radius: 50px; /* ทำให้ปุ่มขอบมนๆ ดูเป็นมิตรเหมือนปุ่มวงกลมในรูป */
+    color: var(--white);
+    transition: all 0.3s ease;
+}
+
+.btn-call { background-color: var(--dark-green); }
+.btn-email { background-color: var(--cta-orange); }
+.btn-line { background-color: #06C755; } /* สีเขียว LINE */
+
+.btn-quick:hover {
+    opacity: 0.85;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+    color: var(--white);
+}
