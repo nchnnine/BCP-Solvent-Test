@@ -241,6 +241,10 @@ section {
     box-shadow: 0 5px 15px rgba(0,0,0,0.05);
     border-top: 4px solid var(--primary-green);
     transition: transform 0.3s;
+    /* เพิ่ม 3 บรรทัดนี้ เพื่อให้กล่องจัดเรียงแบบยืดหยุ่น */
+    display: flex; 
+    flex-direction: column;
+    height: 100%; 
 }
 
 .card:hover {
@@ -256,6 +260,10 @@ section {
 
 .card-content {
     padding: 20px;
+    /* เพิ่ม 3 บรรทัดนี้ เพื่อบังคับเนื้อหาให้ดันปุ่มลงไป */
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1; 
 }
 
 .card-content ul {
@@ -548,4 +556,29 @@ footer p {
     transform: translateY(-2px);
     box-shadow: 0 4px 8px rgba(0,0,0,0.15);
     color: var(--white);
+}
+/* =========================================
+   ปุ่มดาวน์โหลดเอกสาร SDS ในกล่องสินค้า
+   ========================================= */
+.btn-sds {
+    display: block;
+    margin-top: auto; /* เปลี่ยนตรงนี้เป็น auto มันจะดันปุ่มไปอยู่ล่างสุดของกล่องเสมอ! */
+    padding: 10px 15px;
+    background-color: transparent;
+    color: var(--dark-green);
+    border: 2px solid var(--dark-green);
+    border-radius: 6px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 1.2rem;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+/* เอฟเฟกต์เวลาชี้เมาส์: จะสลับสีให้ปุ่มทึบขึ้น */
+.btn-sds:hover {
+    background-color: var(--dark-green);
+    color: var(--white);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
 }
