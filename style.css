@@ -582,3 +582,49 @@ footer p {
     color: var(--white);
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
 }
+/* =========================================
+   Master Fix: แก้ปัญหากล่องไม่เท่ากัน & จัดปุ่ม SDS คู่
+   ========================================= */
+
+/* 1. บังคับให้กล่องทุกใบยืดความสูงให้เท่ากันเสมอ */
+.card {
+    display: flex !important;
+    flex-direction: column !important;
+    height: 100% !important;
+}
+
+.card-content {
+    display: flex !important;
+    flex-direction: column !important;
+    flex-grow: 1 !important; /* บังคับให้เนื้อหายืดดันปุ่มลงไป */
+}
+
+/* 2. จัดปุ่ม SDS ให้เรียงซ้าย-ขวา และกองอยู่ล่างสุดเสมอ */
+.sds-buttons {
+    display: flex !important;
+    flex-direction: row !important; /* บังคับให้ปุ่มเรียงแนวนอน */
+    gap: 10px;
+    margin-top: auto !important; /* เวทมนตร์ที่ดันปุ่มไปติดขอบล่างสุด */
+    width: 100%;
+}
+
+.btn-sds {
+    flex: 1; /* ให้ปุ่มแบ่งพื้นที่ครึ่งๆ (50:50) เท่ากันเป๊ะ */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 12px 5px;
+    background-color: transparent;
+    color: var(--dark-green);
+    border: 2px solid var(--dark-green);
+    border-radius: 6px;
+    text-decoration: none;
+    font-size: 1.1rem;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+.btn-sds:hover {
+    background-color: var(--dark-green);
+    color: var(--white);
+}
